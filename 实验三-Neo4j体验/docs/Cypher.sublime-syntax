@@ -1,0 +1,147 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/syntax.html
+name: Cypher
+file_extensions: [cypher, cyp]
+scope: source.cypher
+contexts:
+  main:
+    - include: keywords
+    - include: comments
+    - include: constants
+    - include: functions
+    - include: identifiers
+
+    - match: '"'
+      scope: punctuation.definition.string.begin.cypher
+      push: double_quoted_string
+
+  comments:
+    # Single Line Comments
+    - match: '//.*$\n?'
+      scope: comment.line.double-slash.cypher
+
+  constants:
+    - match: '\bTRUE|true|FALSE|false\b'
+      scope: constant.language.bool.cypher  
+
+  functions:
+    # List of Cypher built-in functions
+    - match: '(?i)\b(NOT)(?=\s*\()'
+      scope: keyword.control.function.boolean.cypher
+
+    - match: '(?i)\b(ALL|ANY|NONE|SINGLE)(?=\s*\()'
+      scope: support.function.predicate.cypher
+
+    - match: '(?i)\b(LENGTH|TYPE|ID|COALESCE|HEAD|LAST)(?=\s*\()'
+      scope: support.function.scalar.cypher
+
+    - match: '(?i)\b(NODES|RELATIONSHIPS|EXTRACT|FILTER|TAIL|RANGE|REDUCE)(?=\s*\()'
+      scope: support.function.collection.cypher
+
+    - match: '(?i)\b(ABS|ROUND|SQRT|SIGN)(?=\s*\()'
+      scope: support.function.math.cypher
+
+    - match: '(?i)\b(count|sum|avg|max|min|percentile_disc|percentile_cont|collect)(?=\s*\()'
+      scope: support.function.aggregation.cypher
+
+    - match: '(?i)\b(STR|REPLACE|SUBSTRING|LEFT|RIGHT|LTRIM|RTRIM|TRIM|LOWER|UPPER)(?=\s*\()'
+      scope: support.function.string.cypher
+
+  identifiers:
+    - match: '`.+?'
+      scope: variable.other.quoted-identifier.cypher
+
+    - match: '[a-zA-Z_][a-zA-Z0-9_]*'
+      scope: variable.other.identifier.cypher
+
+  keywords:
+    - match: '(?i)\b(MERGE|START|MATCH|WHERE|RETURN|CREATE|DELETE|SET|FOREACH|WITH|CYPHER|DISTINCT|AS|LIMIT|SKIP|UNIQUE|ORDER\s+BY)\b'
+      scope: keyword.control.clause.cypher
+
+    - match: '(?i)\b(DESC|ASC)\b'
+      scope: keyword.other.order.cypher
+
+    - match: '(?i)\b(node|relationship|rel)((:)([a-zA-Z_-][a-zA-Z0-9_]*))?(?=\s*\()'
+      scope: 
+        support.class.starting-functions-point.cypher
+        keyword.control.index-separator
+        support.class.index.cypher
+
+    # Starting Functions
+    - match: '((?:`.+?`)|(?:[a-zA-Z_][a-zA-Z0-9_]*))'
+      scope: variable.parameter.relationship-name.cypher
+
+    - include: comments
+    - include: numbers
+    - include: strings
+    - match: '(\*)'
+      scope: keyword.control.starting-function-params.cypher
+
+  numbers:
+    - match: '\b\d+(\.\d+)?\b'
+      scope: constant.numeric.cypher
+
+  operators:
+    - match: '(\+|\-|\/|\*|\%|\?|!)'
+      scope: keyword.operator.math.cypher
+
+    - match: '(&lt;=|=&gt;|&lt;&gt;|&lt;|&gt;|=~|=)'
+      scope: keyword.operator.compare.cypher
+
+    - match: '(?i)\b(OR|AND)\b'
+      scope: keyword.operator.logical.cypher
+
+    - match: '(?i)\b(IN)\b'
+      scope: keyword.operator.in.cypher
+
+  path-patterns:
+    - match: '(&lt;--|--&gt;|--)'
+      scope: support.gunction.relationship-pattern.cypher
+
+    - match: '(&lt;-|-)(\[)'
+      scope:
+        support.function.relationship-pattern-start.cypher
+        keyword.operator.relationship-pattern-start.cypher
+      push:
+        - match: '(])(-&gt;|-)'
+          scope:
+            keyword.operator.relationship-pattern-end.cypher
+            support.function.relationship-pattern-start.cypher
+
+    - include: identifiers
+    - match: '(:)((?:`.+?`)|(?:[a-zA-Z_][a-zA-Z0-9_]*))'
+      scope: entity.name.class.relationship-type.cypher 
+      push:
+        - match: '(\|)(\s*)((?:`.+?`)|(?:[a-zA-Z_][a-zA-Z0-9_]*))'
+          scope: entity.name.class.relationship-type-order.cypher
+
+    - match: '(?:\?\*|\?|\*)\s*(?:\d+\s*(?:\.\.\s*\d+)?)?'
+      scope: support.function.relationship-pattern-quant.cypher
+
+  properties-literal:
+    - match: '{'
+      scope: keyword.control.properties-literal.cypher
+      push:
+        - match: '}'
+
+    - match: ':|,'   
+      scope: keyword.control.properties-literal.separator.cypher
+    - include: comments
+    - include: constants
+    - include: functions
+    - include: identifiers
+    - include: numbers
+    - include: strings
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.cypher
+    - match: '\\.'
+      scope: constant.character.escape.cypher
+    - match: '"'
+      scope: punctuation.definition.string.end.cypher
+      pop: true
+
+  strings:
+    - include: double_quoted_string
+    # ToDo: single quote string
