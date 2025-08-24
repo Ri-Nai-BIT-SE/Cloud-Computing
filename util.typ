@@ -1,4 +1,4 @@
-#import "@local/bit-undergraduate-thesis-template:0.1.0": three-line-table
+// Removed dependency on local package for compatibility
 
 
 #let table-align(x, y) = {
