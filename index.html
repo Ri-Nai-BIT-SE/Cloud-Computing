@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html lang="" class="sidebar-visible no-js light">
+
+<head>
+    <!-- Book generated using mdBook -->
+    <meta charset="UTF-8">
+    <title>云计算及应用实验报告</title>
+
+
+    <!-- Custom HTML head -->
+    <!-- Put your customized HTML <head> meta here. -->
+    <meta name="description" content="#云计算及应用实验报告本文档包含了云计算及应用课程的所有实验报告和大作业。
+#课程信息•课程名称: 云计算及应用
+
+•学生姓名: 叶子宁
+
+•学号: 1120231313
+
+•专业班级: 软件工程2301班
+#内容概览#实验部分•实验一: 云服务体验 - 体验Linux和Windows虚拟机的使用
+
+•实验三: Neo4j体验 - 学习图数据库的使用和CQL查询语言
+#大作业部分•词频统计: 使用Scala和Hadoop实现分布式词频统计程序
+#技术栈本课程涉及的主要技术包括:
+•云服务器管理 (腾讯云)
+
+•Linux系统操作
+
+•Windows Server管理
+
+•Neo4j图数据库
+
+•Hadoop分布式计算
+
+•Scala编程语言
+">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff" />
+
+    <link rel="stylesheet" href="/Cloud-Computing/theme/css/variables.css">
+    <link rel="stylesheet" href="/Cloud-Computing/theme/css/general.css">
+    <link rel="stylesheet" href="/Cloud-Computing/theme/css/chrome.css">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="/Cloud-Computing/theme/FontAwesome/css/font-awesome.css">
+
+    <!-- Custom theme stylesheets -->
+
+    <style>
+        .typst-app { position: relative; }
+    </style>
+    <script>
+        /// https://segmentfault.com/a/1190000016574288
+        (function () {
+            var ie = !!(window.attachEvent && !window.opera);
+            var wk = /webkit\/(\d+)/i.test(navigator.userAgent) && RegExp.$1 < 525;
+            var fn = [];
+            var run = function () {
+                for (var i = 0; i < fn.length; i++) fn[i]();
+            };
+            var d = document;
+            d.ready = function (f) {
+                if (!ie && !wk && d.addEventListener) return d.addEventListener('DOMContentLoaded', f, false);
+                if (fn.push(f) > 1) return;
+                if (ie)
+                    (function () {
+                        try {
+                            d.documentElement.doScroll('left');
+                            run();
+                        } catch (err) {
+                            setTimeout(arguments.callee, 0);
+                        }
+                    })();
+                else if (wk)
+                    var t = setInterval(function () {
+                        if (/^(loaded|complete)$/.test(d.readyState)) clearInterval(t), run();
+                    }, 0);
+            };
+        })();
+
+        window.captureStack = function() { }
+    </script>
+
+    <script id="shiroa-js" type="module" src="/Cloud-Computing/internal/shiroa.js"></script>
+    <script>
+        window.typstRerender = () => { };
+        window.typstChangeTheme = () => { };
+
+        var typstBookJsLoaded = new Promise((resolve, reject) => {
+            document.getElementById('shiroa-js').addEventListener('load', resolve);
+            document.getElementById('shiroa-js').addEventListener('error', reject);
+        });
+
+        var rendererWasmModule = fetch('/Cloud-Computing/internal/typst_ts_renderer_bg.wasm');
+        window.typstBookJsLoaded = typstBookJsLoaded;
+        window.typstRenderModuleReady = typstBookJsLoaded.then(() => {
+            var typstRenderModule = window.typstRenderModule =
+                window.TypstRenderModule.createTypstRenderer();
+            return typstRenderModule
+                .init({
+                    getModule: () => rendererWasmModule,
+                }).then(() => typstRenderModule);
+        }).catch((err) => {
+            console.error('shiroa.js failed to load', err);
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "/Cloud-Computing/";
+            window.typstPathToRoot = path_to_root;
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            // reserved util next major release
+            try {
+                localStorage.removeItem('mdbook-theme');
+                localStorage.removeItem('mdbook-sidebar');
+            } catch (e) { }
+            try {
+                var theme = localStorage.getItem('shiroa-theme');
+                var sidebar = localStorage.getItem('shiroa-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('shiroa-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('shiroa-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            window.getTypstTheme = function getTypstTheme() {
+                var _theme;
+                try { _theme = localStorage.getItem('shiroa-theme'); } catch (e) { }
+                if (_theme === null || _theme === undefined) { _theme = default_theme; }
+                window.typstBookTheme = _theme;
+                return _theme;
+            }
+            window.isTypstLightTheme = function isLightTheme(theme) {
+                return theme === 'light' || theme === 'rust';
+            }
+            var theme = getTypstTheme();
+            // todo: consistent theme between html and typst
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 800) {
+                try { sidebar = localStorage.getItem('shiroa-sidebar'); } catch (e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="/Cloud-Computing/pages/Introduction.html" class="active">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">云计算及应用实验</li><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/experiments/1/实验一-云服务体验.html"><strong aria-hidden="true">1.</strong> 实验一：云服务体验</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/experiments/1/Linux-VM.html"><strong aria-hidden="true">1.1.</strong> Linux 虚拟机</a></li><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/experiments/1/Windows-VM.html"><strong aria-hidden="true">1.2.</strong> Windows 虚拟机</a></li></ol></li><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/experiments/3/实验三-Neo4j体验.html"><strong aria-hidden="true">2.</strong> 实验三：Neo4j体验</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/experiments/3/Environment-Settings.html"><strong aria-hidden="true">2.1.</strong> 环境配置</a></li><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/experiments/3/Experience-CQL.html"><strong aria-hidden="true">2.2.</strong> 体验 CQL 语句</a></li><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/experiments/3/Create-Knowledge-Graph.html"><strong aria-hidden="true">2.3.</strong> 创建知识图谱</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">云计算及应用大作业</li><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/assignments/大作业-词频统计.html"><strong aria-hidden="true">3.</strong> 大作业：词频统计</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/assignments/environment.html"><strong aria-hidden="true">3.1.</strong> 环境配置</a></li><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/assignments/solution.html"><strong aria-hidden="true">3.2.</strong> 解决方案</a></li><li class="chapter-item expanded "><a href="/Cloud-Computing/pages/assignments/result.html"><strong aria-hidden="true">3.3.</strong> 运行结果</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function (e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <!-- Put your customized page header here. -->                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents"
+                            aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme"
+                            aria-label="Change theme" aria-haspopup="true" aria-expanded="false"
+                            aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)"
+                            aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S"
+                            aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">云计算及应用实验报告</h1>
+
+                    <div class="right-buttons">
+                        <a href="https://github.com/Ri-Nai/Interests" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..."
+                            aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function (link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <script>
+    let appContainer = document.currentScript && document.currentScript.parentElement;
+    window.typstRenderModuleReady.then((plugin) => {
+        window.typstBookRenderPage(plugin, "/Cloud-Computing/pages/Introduction", appContainer);
+    });
+</script>
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script src="/Cloud-Computing/internal/elasticlunr.min.js"></script>
+        <script src="/Cloud-Computing/internal/mark.min.js"></script>
+        <script src="/Cloud-Computing/internal/searcher.js"></script>
+
+        <script src="/Cloud-Computing/internal/svg_utils.js"></script>
+        <script src="/Cloud-Computing/theme/index.js"></script>
+
+    </div>
+</body>
+
+</html>
